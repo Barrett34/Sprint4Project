@@ -12,6 +12,7 @@ This project compares the statistical data of US vehicles that are on sale. Data
 3. After you clone the project, in a terminal run the command: `streamline run app.py`
 4. Copy the URL link in the terminal that is returned
 5. Enter the copied URL in a web browser to access app.
+6. If an error occurs stating the .csv file could not be found, make sure the file path is correct in the app.py file.
 
 ### Necessary modules and packages
 `pandas==2.0.3
