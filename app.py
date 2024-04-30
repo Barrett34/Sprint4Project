@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.express as pex
 import plotly.figure_factory as ff
-import altair as al
 import pandas as pd
 
 st.header('Vehicle Sales US Data')
