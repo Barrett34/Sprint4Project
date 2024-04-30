@@ -6,7 +6,7 @@ This project compares the statistical data of US vehicles that are on sale. Data
 
 ## How to access web app
 
-1 . Clone down the repository from : [Repo](https://github.com/Barrett34/Sprint4Project)
+1. Clone down the repository from : [https://github.com/Barrett34/Sprint4Project](https://github.com/Barrett34/Sprint4Project)
 2. Use either a terminal on your local machine, or an IDE and go to your preferred location and use command:
 `git clone [REPO LINK]`
 3. After you clone the project, in a terminal run the command: `streamline run app.py`
@@ -23,4 +23,4 @@ All listed in requirements.txt file
 
 ### Render Web Service Link
 
-[RENDER](https://sprint4project-3.onrender.com)
+[https://sprint4project-3.onrender.com](https://sprint4project-3.onrender.com)
