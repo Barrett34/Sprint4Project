@@ -7,7 +7,9 @@ st.header('Vehicle Sales US EDA & SDA Study')
 
 st.write('In this project, we will conduct a statistical and explorative data analysis of the vehicles sold in the US. The data comes from a cars advertisement dataset in a .csv file. ')
 
-vehicles_df = pd.read_csv('/Users/barrett22/Desktop/Sprint_4_Project/Sprint4Project/vehicles_us.csv')
+vehicle_csv_path = 'vehicles_us.csv'
+
+vehicles_df = pd.read_csv(vehicle_csv_path)
 st.dataframe(vehicles_df)
 
 mean_cost_by_model_yr = vehicles_df.groupby(['model_year']).agg(mean_price=('price','mean')).sort_index().sort_values(by='mean_price', ascending=False)
