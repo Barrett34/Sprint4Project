@@ -27,7 +27,13 @@ mean_price_by_condition_bar = pex.bar(mean_cost_by_condition, y="mean_price", ti
     "condition":"condition"
 })
 
+year_to_filter = st.slider('model_year', min_value=int(vehicles_df['model_year'].min()), max_value=int(vehicles_df['model_year'].max()), value=int(df['year'].min()))
 
+# Filtering the DataFrame based on the selected year
+filtered_df = vehicles_df[vehicles_df['model_year'] == year_to_filter]
+
+# Then display the filtered data (or perform other operations)
+st.write(filtered_df)
 
 st.subheader('Mean Price By Model Year')
 
