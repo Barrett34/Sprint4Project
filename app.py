@@ -1,6 +1,5 @@
 import streamlit as st
 import plotly.express as pex
-import plotly.figure_factory as ff
 import pandas as pd
 
 st.header('Vehicle Sales US EDA & SDA Study')
@@ -12,11 +11,12 @@ vehicle_csv_path = 'vehicles_us.csv'
 vehicles_df = pd.read_csv(vehicle_csv_path)
 st.dataframe(vehicles_df)
 
-mean_cost_by_model_yr = vehicles_df.groupby(['model_year']).agg(mean_price=('price','mean')).sort_index().sort_values(by='mean_price', ascending=False)
-mean_price_by_yr_his = pex.histogram(mean_cost_by_model_yr, x = 'mean_price', title='Mean Price By Year Histogram', labels={
+cost_by_model_yr = vehicles_df[['model_year','price']]
+mean_price_by_model_yr = vehicles_df.groupby(['model_year']).agg(mean_price=('price','mean')).sort_index().sort_values(by='mean_price', ascending=False)
+price_by_yr_his = pex.histogram(mean_price_by_model_yr, x = 'mean_price', title='Mean Price Frequency Over the Years Histogram', labels={
     "mean_price":"Mean Price"
 })
-mean_price_by_model_yr_scatter = pex.scatter(mean_cost_by_model_yr,  y="mean_price", title='Mean Price by Model Year', labels={
+mean_price_by_model_yr_scatter = pex.scatter(mean_price_by_model_yr,  y="mean_price", title='Mean Price by Model Year', labels={
                      "mean_price": "Mean Price",
                      "model_year": "Model Year",
                  })
@@ -27,7 +27,7 @@ mean_price_by_condition_bar = pex.bar(mean_cost_by_condition, y="mean_price", ti
     "condition":"condition"
 })
 
-year_to_filter = st.slider('model_year', min_value=int(vehicles_df['model_year'].min()), max_value=int(vehicles_df['model_year'].max()), value=int(df['year'].min()))
+year_to_filter = st.slider('model_year', min_value=int(vehicles_df['model_year'].min()), max_value=int(vehicles_df['model_year'].max()), value=int(vehicles_df['model_year'].min()))
 
 # Filtering the DataFrame based on the selected year
 filtered_df = vehicles_df[vehicles_df['model_year'] == year_to_filter]
@@ -35,14 +35,16 @@ filtered_df = vehicles_df[vehicles_df['model_year'] == year_to_filter]
 # Then display the filtered data (or perform other operations)
 st.write(filtered_df)
 
-st.subheader('Mean Price By Model Year')
+
 
 show_scatterplot = st.checkbox('Scatterplot', value=True)
 
 if show_scatterplot:
+    st.subheader('Mean Price By Model Year Scatterplot')
     st.write(mean_price_by_model_yr_scatter)
 else:
-    st.write(mean_price_by_yr_his)
+    st.subheader('Price By Model Year His')
+    st.write(price_by_yr_his)
 
 
 st.subheader("Mean Price by Condition Year")
